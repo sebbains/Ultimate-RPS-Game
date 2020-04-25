@@ -2,6 +2,12 @@ let aiGuess = "";
 let myGuess = "";
 let result = "";
 
+function assignmyGuess(){
+    myGuess = document.getElementById("myGuess").value;
+    //console.log(myGuess);
+    createaiGuess();
+}
+
 function createaiGuess(){
     let randomNumber = Math.floor(Math.random()*3);
     //console.log(randomNumber);
@@ -13,6 +19,7 @@ function createaiGuess(){
         case 2: aiGuess = "Scissors";
             break;
     }
+    compareGuess(myGuess, aiGuess);
 }
 
 function compareGuess(me,ai){
@@ -40,9 +47,10 @@ function compareGuess(me,ai){
                 break;
         }
     }
+    alert(result);
 }
 
-createaiGuess();
+//createaiGuess();
 //console.log(aiGuess);
-compareGuess("Scissors","Paper");
-console.log(result);
+//compareGuess("Scissors","Paper");
+//console.log(result);
