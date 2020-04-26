@@ -5,7 +5,7 @@ let myScore = 0;
 let aiScore = 0;
 let previousRounds = [];
 
-function play(){
+function playGame(){
     assignmyGuess();
     createaiGuess();
     updateFront("aiGuess",aiGuess);
@@ -16,7 +16,7 @@ function play(){
     updateFront("aiScore",aiScore);
     previousRounds.push(result);
     updateFront("previousRounds",previousRounds);
-}
+};
 
 function assignmyGuess(){
     myGuess = document.getElementById("myGuess").value;
@@ -77,4 +77,17 @@ function calcScores(res){
 function updateFront(item, result){
     let resultMap = document.getElementById(item);
     resultMap.innerHTML = result;
+}
+
+function resetGame(){
+    aiGuess = "";
+    updateFront("aiGuess",aiGuess);
+    result = "";
+    updateFront("result",result);
+    myScore = 0;
+    updateFront("myScore",myScore);
+    aiScore = 0;
+    updateFront("aiScore",aiScore);
+    previousRounds = [];
+    updateFront("previousRounds",previousRounds);
 }

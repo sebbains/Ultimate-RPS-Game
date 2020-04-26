@@ -9,15 +9,15 @@
 <body>
     <div class="container">
         <h1>Rock, Paper, Scissors</h1>
-        <p>Welcome! Let's play Rock, Paper, Scissors together. Please select an option below</p>
-        <p>When happy with your selection click Continue</p>
+        <p>Welcome! Let's play Rock, Paper, Scissors together. Select an option below and click Play</p>
         <form>
             <select id="myGuess" name="myGuess">
                 <option value="Rock">Rock</option>
                 <option value="Paper">Paper</option>
                 <option value="Scissors">Scissors</option>
             </select>
-            <input type="button" value="Continue" onclick="play()">
+            <input id="play" type="button" value="Play" onclick="playGame();">
+            <input id="reset" type="button" value="Reset" onclick="resetGame();">
         </form>
         <div id="aiGuessContainer">
             <p>The AI guessed:</p>
@@ -40,7 +40,7 @@
             <p>Previous Rounds</p>
             <p id="previousRounds"></p>
         </div>
-    </div>
-    <script src="scripts.js"></script>
+    </div>    
+    <script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>
