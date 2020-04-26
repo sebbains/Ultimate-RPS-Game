@@ -2,13 +2,25 @@ let aiGuess = "";
 let myGuess = "";
 let result = "";
 let myScore = 0;
-let aScore = 0;
+let aiScore = 0;
 let previousRounds = [];
+
+function play(){
+    assignmyGuess();
+    createaiGuess();
+    updateFront("aiGuess",aiGuess);
+    compareGuess(myGuess, aiGuess);
+    updateFront("result",result);
+    calcScores(result);
+    updateFront("myScore",myScore);
+    updateFront("aiScore",aiScore);
+    previousRounds.push(result);
+    updateFront("previousRounds",previousRounds);
+}
 
 function assignmyGuess(){
     myGuess = document.getElementById("myGuess").value;
     //console.log(myGuess);
-    createaiGuess();
 }
 
 function createaiGuess(){
@@ -22,13 +34,6 @@ function createaiGuess(){
         case 2: aiGuess = "Scissors";
             break;
     }
-    updateaiGuess();
-    compareGuess(myGuess, aiGuess);
-}
-
-function updateaiGuess(){
-    let aiGuessMap = document.getElementById("aiGuess");
-    aiGuessMap.innerHTML = aiGuess;
 }
 
 function compareGuess(me,ai){
@@ -56,31 +61,20 @@ function compareGuess(me,ai){
                 break;
         }
     }
-    updateResult();
 }
 
-function updateResult(){
-    let resultMap = document.getElementById("result");
-    resultMap.innerHTML = result;
-    updateScores(result);
-    updatePreviousRounds();
-}
-
-function updateScores(res){
+function calcScores(res){
     if(res==="Win"){
         myScore++;
     }else if(res==="Lose"){
         aiScore++;
     }else{
-        myscore++;
+        myScore++;
         aiScore++;
     }
-    document.getElementById("myScore").innerHTML = myScore;
-    document.getElementById("aiScore").innerHTML = aiScore;
 }
 
-function updatePreviousRounds(){
-    previousRounds.push(result);
-    let previousRoundsMap = document.getElementById("previousRounds");
-    previousRoundsMap.innerHTML = previousRounds;
+function updateFront(item, result){
+    let resultMap = document.getElementById(item);
+    resultMap.innerHTML = result;
 }

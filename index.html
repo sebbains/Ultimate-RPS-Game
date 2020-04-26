@@ -17,7 +17,7 @@
                 <option value="Paper">Paper</option>
                 <option value="Scissors">Scissors</option>
             </select>
-            <input type="button" value="Continue" onclick="assignmyGuess()">
+            <input type="button" value="Continue" onclick="play()">
         </form>
         <div id="aiGuessContainer">
             <p>The AI guessed:</p>
@@ -27,10 +27,14 @@
             <p>The result is you :</p>
             <p id="result"></p>
         </div>
-        <div id="scoreContainer">
+        <div id="scoresContainer">
             <p>The Score</p>
-            <div id="myScore"><p>Me:</p></div>
-            <div id="aiScore"><p>AI:</p></div>
+            <div id="scores">
+                <p>Me:</p>
+                <p id="myScore"></p>
+                <p>AI:</p>
+                <p id="aiScore"></p>
+            </div>
         </div>
         <div id="previousRoundsContainer">
             <p>Previous Rounds</p>
