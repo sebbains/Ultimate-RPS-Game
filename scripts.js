@@ -33,15 +33,10 @@ let aiFighter = {};
 function playGame(){
     assignmyGuess();
     createaiGuess();
-    updateFront("aiFighterText",aiGuessName);
-    updateFront("myFighterText",myGuessName);
     compareGuess(myGuess, aiGuess);
-    updateFront("result",result);
     calcScores(result);
-    //updateFront("myScore",myScore);
-    //updateFront("aiScore",aiScore);
-    //previousRounds.push(result);
-    //updateFront("previousRounds",previousRounds);
+    previousRounds.push(result);
+    updateFront("previousRounds",previousRounds);
 };
 
 function assignmyGuess(){
@@ -53,26 +48,28 @@ function assignmyGuess(){
     //copy fighter object to myFighter
     myFighter = Object.assign({}, fighters[myGuess]);
 
-    //show&hide inline Fighter SVGs
+    //hide all Fighter SVGs
+    rockIMG.style.display="none";
+    paperIMG.style.display="none";
+    scissorsIMG.style.display="none";
+
+    //show inline Fighter SVG
     switch(myGuess){
         case "Rock":
             rockIMG.style.display="block";
-            rockIMG.style.visibility="visible";
         break;
         case "Paper": 
             paperIMG.style.display="block";
-            paperIMG.style.visibility="visible";
         break;
         case "Scissors": 
             scissorsIMG.style.display="block";
-            scissorsIMG.style.visibility="visible";
         break;
     }
 
     //assign front name
     myGuessName = myFighter.name;
-    console.log(myGuessName);
-
+    updateFront("myFighterText",myGuessName);
+    //console.log(myGuessName);
 }
 
 function createaiGuess(){
@@ -81,22 +78,18 @@ function createaiGuess(){
     switch(randomNumber){
         case 0 : 
             aiGuess = "Rock";
-            assignaiName(aiGuess);
             break;
         case 1 : 
             aiGuess = "Paper";
-            assignaiName(aiGuess);
             break;
         case 2: 
             aiGuess = "Scissors";
-            assignaiName(aiGuess);
             break;
     }
-}
 
-function assignaiName(guess){
-    aiGuessName = fighters[guess].name;
-    //console.log(aiGuessName);
+    //assign front name
+    aiGuessName = fighters[aiGuess].name;
+    updateFront("aiFighterText",aiGuessName);
 }
 
 function compareGuess(me,ai){
@@ -124,6 +117,7 @@ function compareGuess(me,ai){
                 break;
         }
     }
+    updateFront("result",result);
 }
 
 function calcScores(res){
@@ -135,6 +129,8 @@ function calcScores(res){
         myScore++;
         aiScore++;
     }
+    updateFront("myScore",myScore);
+    updateFront("aiScore",aiScore);
 }
 
 function updateFront(item, result){
