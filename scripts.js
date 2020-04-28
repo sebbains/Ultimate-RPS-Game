@@ -1,39 +1,102 @@
 let aiGuess = "";
+let aiGuessName = "?";
 let myGuess = "";
+let myGuessName ="?";
 let result = "";
 let myScore = 0;
 let aiScore = 0;
 let previousRounds = [];
 
+const fighters ={
+    Rock:{
+        "name":"The Rock!",
+        "health":100,
+        "speed":1,
+        "attack":["att1","att2","att3"]
+    },
+    Paper:{
+        "name":"Paper Cut!",
+        "health":50,
+        "speed":3,
+        "attack":["att1","att2","att3"]
+    },
+    Scissors:{
+        "name":"Mr Snips!",
+        "health":75,
+        "speed":2,
+        "attack":["att1","att2","att3"]
+    }
+}
+let myFighter = {};
+let aiFighter = {};
+
 function playGame(){
     assignmyGuess();
     createaiGuess();
-    updateFront("aiGuess",aiGuess);
+    updateFront("aiFighterText",aiGuessName);
+    updateFront("myFighterText",myGuessName);
     compareGuess(myGuess, aiGuess);
     updateFront("result",result);
     calcScores(result);
-    updateFront("myScore",myScore);
-    updateFront("aiScore",aiScore);
-    previousRounds.push(result);
-    updateFront("previousRounds",previousRounds);
+    //updateFront("myScore",myScore);
+    //updateFront("aiScore",aiScore);
+    //previousRounds.push(result);
+    //updateFront("previousRounds",previousRounds);
 };
 
 function assignmyGuess(){
     myGuess = document.getElementById("myGuess").value;
-    //console.log(myGuess);
+    rockIMG = document.getElementById("rockSVG");
+    paperIMG = document.getElementById("paperSVG");
+    scissorsIMG = document.getElementById("scissorsSVG");
+
+    //copy fighter object to myFighter
+    myFighter = Object.assign({}, fighters[myGuess]);
+
+    //show&hide inline Fighter SVGs
+    switch(myGuess){
+        case "Rock":
+            rockIMG.style.display="block";
+            rockIMG.style.visibility="visible";
+        break;
+        case "Paper": 
+            paperIMG.style.display="block";
+            paperIMG.style.visibility="visible";
+        break;
+        case "Scissors": 
+            scissorsIMG.style.display="block";
+            scissorsIMG.style.visibility="visible";
+        break;
+    }
+
+    //assign front name
+    myGuessName = myFighter.name;
+    console.log(myGuessName);
+
 }
 
 function createaiGuess(){
     let randomNumber = Math.floor(Math.random()*3);
     //console.log(randomNumber);
     switch(randomNumber){
-        case 0 : aiGuess = "Rock";
+        case 0 : 
+            aiGuess = "Rock";
+            assignaiName(aiGuess);
             break;
-        case 1 : aiGuess = "Paper";
+        case 1 : 
+            aiGuess = "Paper";
+            assignaiName(aiGuess);
             break;
-        case 2: aiGuess = "Scissors";
+        case 2: 
+            aiGuess = "Scissors";
+            assignaiName(aiGuess);
             break;
     }
+}
+
+function assignaiName(guess){
+    aiGuessName = fighters[guess].name;
+    //console.log(aiGuessName);
 }
 
 function compareGuess(me,ai){
@@ -80,8 +143,9 @@ function updateFront(item, result){
 }
 
 function resetGame(){
-    aiGuess = "";
-    updateFront("aiGuess",aiGuess);
+    aiGuess="";
+    aiFighterName = "?";
+    updateFront("aiFighterText",aiFighterName);
     result = "";
     updateFront("result",result);
     myScore = 0;
