@@ -6,7 +6,7 @@ let result = "";
 let myScore = 0;
 let aiScore = 0;
 let previousRounds = [];
-
+let previousGuess = "";
 const fighters ={
     Rock:{
         "name":"The Rock!",
@@ -29,10 +29,42 @@ const fighters ={
 }
 let myFighter = {};
 let aiFighter = {};
+let RockIMG = document.getElementById("rockSVG");
+RockIMG.addEventListener("animationend", rockListener, false);
+let PaperIMG = document.getElementById("paperSVG");
+PaperIMG.addEventListener("animationend", paperListener, false);
+let ScissorsIMG = document.getElementById("scissorsSVG");
+ScissorsIMG.addEventListener("animationend", scissorListener, false);
+let aiRockIMG = document.getElementById("aiRockSVG");
+//aiRockIMG.addEventListener("animationend", aiRockListener, false);
+let aiPaperIMG = document.getElementById("aiPaperSVG");
+//aiPaperIMG.addEventListener("animationend", aiPaperListener, false);
+let aiScissorsIMG = document.getElementById("aiScissorsSVG");
+//aiScissorsIMG.addEventListener("animationend", aiScissorListener, false);
+let fighterIMGs = document.getElementsByClassName("fighter");
+let fighterAni = document.getElementById("fighterSelect");
+fighterAni.addEventListener("animationend", fighterListener, false);
+
+/*
+function listener(event) {
+    switch(event.type) {
+      case "animationstart":
+        console.log("fighterSelect animation started");
+        break;
+      case "animationend":
+        console.log("fighterSelect animation ended");
+        break;
+      case "animationiteration":
+        console.log("fighterSelect animation repeated");
+        break;
+    }
+}*/
 
 function playGame(){
+    clearChoices();
     assignmyGuess();
     createaiGuess();
+    fight();
     compareGuess(myGuess, aiGuess);
     calcScores(result);
     previousRounds.push(result);
@@ -41,28 +73,20 @@ function playGame(){
 
 function assignmyGuess(){
     myGuess = document.getElementById("myGuess").value;
-    rockIMG = document.getElementById("rockSVG");
-    paperIMG = document.getElementById("paperSVG");
-    scissorsIMG = document.getElementById("scissorsSVG");
 
     //copy fighter object to myFighter
     myFighter = Object.assign({}, fighters[myGuess]);
 
-    //hide all Fighter SVGs
-    rockIMG.style.display="none";
-    paperIMG.style.display="none";
-    scissorsIMG.style.display="none";
-
     //show inline Fighter SVG
     switch(myGuess){
         case "Rock":
-            rockIMG.style.display="block";
+            RockIMG.style.display="block";
         break;
         case "Paper": 
-            paperIMG.style.display="block";
+            PaperIMG.style.display="block";
         break;
         case "Scissors": 
-            scissorsIMG.style.display="block";
+            ScissorsIMG.style.display="block";
         break;
     }
 
@@ -70,6 +94,10 @@ function assignmyGuess(){
     myGuessName = myFighter.name;
     updateFront("myFighterText",myGuessName);
     //console.log(myGuessName);
+
+    //update previous guess
+    previousGuess = myGuess;
+    console.log(previousGuess);
 }
 
 function createaiGuess(){
@@ -87,8 +115,24 @@ function createaiGuess(){
             break;
     }
 
+    //copy fighter object to aiFighter
+    aiFighter = Object.assign({}, fighters[aiGuess]);
+
+    //show inline Fighter SVG
+    switch(aiGuess){
+        case "Rock":
+            aiRockIMG.style.display="block";
+        break;
+        case "Paper": 
+            aiPaperIMG.style.display="block";
+        break;
+        case "Scissors": 
+            aiScissorsIMG.style.display="block";
+        break;
+    }
+
     //assign front name
-    aiGuessName = fighters[aiGuess].name;
+    aiGuessName = aiFighter.name;
     updateFront("aiFighterText",aiGuessName);
 }
 
@@ -120,6 +164,38 @@ function compareGuess(me,ai){
     updateFront("result",result);
 }
 
+function fight(){
+    switch(myGuess){
+        case "Rock":
+            RockIMG.classList.add("fight1");
+        break;
+        case "Paper": 
+            PaperIMG.classList.add("fight1");
+        break;
+        case "Scissors": 
+            ScissorsIMG.classList.add("fight1");
+        break;
+    }
+    fighterAni.classList.add("myAttack");
+}
+
+//reset classes post animation finish
+function fighterListener(event) {
+    fighterAni.classList.remove("myAttack");
+}
+
+function rockListener(event) {
+    RockIMG.classList.remove("fight1");
+}
+
+function paperListener(event) {
+    PaperIMG.classList.remove("fight1");
+}
+
+function scissorListener(event) {
+    ScissorsIMG.classList.remove("fight1");
+}
+
 function calcScores(res){
     if(res==="Win"){
         myScore++;
@@ -139,15 +215,29 @@ function updateFront(item, result){
 }
 
 function resetGame(){
-    aiGuess="";
-    aiFighterName = "?";
-    updateFront("aiFighterText",aiFighterName);
-    result = "";
-    updateFront("result",result);
+    clearChoices();
     myScore = 0;
     updateFront("myScore",myScore);
     aiScore = 0;
     updateFront("aiScore",aiScore);
     previousRounds = [];
     updateFront("previousRounds",previousRounds);
+}
+
+function clearChoices(){
+    hideIMGS();
+    aiGuess="";
+    aiFighterName = "?";
+    updateFront("aiFighterText",aiFighterName);
+    myGuess = "";
+    myGuessName ="?";
+    updateFront("myFighterText",myGuessName);
+    result = "";
+    updateFront("result",result);
+}
+
+function hideIMGS(){
+    for (i = 0; i < fighterIMGs.length; i++) {
+    fighterIMGs[i].style.display = "none";
+    }
 }

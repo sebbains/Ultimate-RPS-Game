@@ -54,7 +54,7 @@
                                     </rdf:RDF>
                                     </metadata>
                                     <g transform="translate(0 -270.54)">
-                                    <path class="myRock" d="m8.7983 290.22 6.0533-9.6196 1.4606 9.8282m-7.3165-11.058 5.906 1.0668 3.0371-1.5665m-11.17 4.3704 2.2269-3.8707 4.277-2.2449 4.6661 1.7452 1.7493 8.039-3.376 3.5185-7.5139-0.20855z" fill="none" stroke="#000" stroke-width=".26458px"/>
+                                    <path class="myRock" id="theRock" d="m8.7983 290.22 6.0533-9.6196 1.4606 9.8282m-7.3165-11.058 5.906 1.0668 3.0371-1.5665m-11.17 4.3704 2.2269-3.8707 4.277-2.2449 4.6661 1.7452 1.7493 8.039-3.376 3.5185-7.5139-0.20855z" fill="none" stroke="#000" stroke-width=".26458px"/>
                                     </g>
                                 </svg> 
                             </div>
@@ -105,82 +105,61 @@
                 </div>
                 <div class="arena" id="aiArena">
                     <div id="aiFighter">
-                            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                            <!-- Created with Inkscape (http://www.inkscape.org/) -->
-                        <div id="aiFighterSVG">
-                            <svg
-                            xmlns:dc="http://purl.org/dc/elements/1.1/"
-                            xmlns:cc="http://creativecommons.org/ns#"
-                            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                            xmlns:svg="http://www.w3.org/2000/svg"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                            width="100"
-                            height="100"
-                            viewBox="0 0 26.458333 26.458334"
-                            version="1.1"
-                            id="svg8"
-                            sodipodi:docname="rock.svg"
-                            inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
-                            <defs
-                                id="defs2" />
-                            <sodipodi:namedview
-                                id="base"
-                                pagecolor="#ffffff"
-                                bordercolor="#666666"
-                                borderopacity="1.0"
-                                inkscape:pageopacity="0.0"
-                                inkscape:pageshadow="2"
-                                inkscape:zoom="5.6"
-                                inkscape:cx="60.780459"
-                                inkscape:cy="50.389935"
-                                inkscape:document-units="mm"
-                                inkscape:current-layer="layer1"
-                                showgrid="false"
-                                units="px"
-                                inkscape:window-width="960"
-                                inkscape:window-height="1017"
-                                inkscape:window-x="952"
-                                inkscape:window-y="-8"
-                                inkscape:window-maximized="0" />
-                            <metadata
-                                id="metadata5">
-                                <rdf:RDF>
-                                <cc:Work
-                                    rdf:about="">
-                                    <dc:format>image/svg+xml</dc:format>
-                                    <dc:type
-                                    rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                                    <dc:title></dc:title>
-                                </cc:Work>
-                                </rdf:RDF>
-                            </metadata>
-                            <g
-                                inkscape:label="Layer 1"
-                                inkscape:groupmode="layer"
-                                id="layer1"
-                                transform="translate(0,-270.54165)">
-                                <path class="aiRock"
-                                style="fill:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                                d="m 8.1979841,284.37428 2.2269179,-3.87067 4.277055,-2.2449 4.666079,1.74518 1.749326,8.03904 -3.375956,3.51852 -7.513885,-0.20855 z"
-                                id="path5075"
-                                inkscape:connector-curvature="0"
-                                sodipodi:nodetypes="cccccccc" />
-                                <path class="aiRock"
-                                style="fill:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                                d="m 10.424902,280.50361 5.906052,1.0668 3.037082,-1.56652"
-                                id="path5077"
-                                inkscape:connector-curvature="0"
-                                sodipodi:nodetypes="ccc" />
-                                <path class="aiRock"
-                                style="fill:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                                d="m 10.227521,291.3529 6.05332,-9.61962 1.460565,9.82817"
-                                id="path5079"
-                                inkscape:connector-curvature="0"
-                                sodipodi:nodetypes="ccc" />
-                            </g>
-                            </svg>
+                        <div id="fighterSelect">
+                            <div class="fighter" id="aiRockSVG">
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                <!-- Created with Inkscape (http://www.inkscape.org/) -->
+                                <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                                    <metadata>
+                                    <rdf:RDF>
+                                    <cc:Work rdf:about="">
+                                        <dc:format>image/svg+xml</dc:format>
+                                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                        <dc:title/>
+                                    </cc:Work>
+                                    </rdf:RDF>
+                                    </metadata>
+                                    <g transform="translate(0 -270.54)">
+                                    <path class="aiRock" d="m8.7983 290.22 6.0533-9.6196 1.4606 9.8282m-7.3165-11.058 5.906 1.0668 3.0371-1.5665m-11.17 4.3704 2.2269-3.8707 4.277-2.2449 4.6661 1.7452 1.7493 8.039-3.376 3.5185-7.5139-0.20855z" fill="none" stroke="#000" stroke-width=".26458px"/>
+                                    </g>
+                                </svg> 
+                            </div>
+                            <div class="fighter" id="aiPaperSVG">
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                <!-- Created with Inkscape (http://www.inkscape.org/) -->
+                                <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                                    <metadata>
+                                    <rdf:RDF>
+                                    <cc:Work rdf:about="">
+                                        <dc:format>image/svg+xml</dc:format>
+                                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                        <dc:title/>
+                                    </cc:Work>
+                                    </rdf:RDF>
+                                    </metadata>
+                                    <g transform="translate(0 -270.54)">
+                                    <path class="aiPaper" d="m9.6809 288.77h6.6256m-6.6077-1.8917h6.6256m-6.6857-1.8004h6.6256m-6.6122-1.689h6.6256m-6.6857-1.8004h6.6256m-0.0346-5.9767v3.1774l2.6222 0.0118h-3e-6m-11.15-3.1892 0.18899 16.324h10.961v-13.135l-2.6222-3.1892z" fill="none" stroke="#000" stroke-width=".26458px"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="fighter" id="aiScissorsSVG">
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                <!-- Created with Inkscape (http://www.inkscape.org/) -->
+                                <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                                    <metadata>
+                                    <rdf:RDF>
+                                    <cc:Work rdf:about="">
+                                        <dc:format>image/svg+xml</dc:format>
+                                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                        <dc:title/>
+                                    </cc:Work>
+                                    </rdf:RDF>
+                                    </metadata>
+                                    <g transform="translate(0 -270.54)">
+                                    <path class="aiScissors" d="m16.132 286.84a2.1325 2.1798 0 0 0-2.1322 2.1802 2.1325 2.1798 0 0 0 2.1322 2.1797 2.1325 2.1798 0 0 0 2.1327-2.1797 2.1325 2.1798 0 0 0-2.1327-2.1802zm-0.02015 0.66869a1.5166 1.5206 0 0 1 1.5167 1.5203 1.5166 1.5206 0 0 1-1.5167 1.5208 1.5166 1.5206 0 0 1-1.5162-1.5208 1.5166 1.5206 0 0 1 1.5162-1.5203zm-2.6306-1.35 0.95574 2.0112 1.0551-1.2333-1.2564-2.1281zm-4.6057-8.0041 3.2526 5.6989 0.72099-1.2667-2.7019-4.9703c-0.60155-1.1359-2.0012-0.56681-1.2717 0.53817zm7.6155-1.1682-5.6393 10.328 1.137 0.77442 5.4999-10.447c0.77116-1.1379-0.21374-1.9179-0.99765-0.65538zm-6.1654 9.7601a2.1325 2.1798 0 0 0-2.1327 2.1797 2.1325 2.1798 0 0 0 2.1327 2.1797 2.1325 2.1798 0 0 0 2.1322-2.1797 2.1325 2.1798 0 0 0-2.1322-2.1797zm-0.02067 0.66817a1.5166 1.5206 0 0 1 1.5167 1.5208 1.5166 1.5206 0 0 1-1.5167 1.5203 1.5166 1.5206 0 0 1-1.5162-1.5203 1.5166 1.5206 0 0 1 1.5162-1.5208z"/>
+                                    </g>
+                                </svg>
+                            </div>
                         </div>
                         <div class="fighterName" id="aiFighterName">
                             <h3 id="aiFighterText">?</h3>
