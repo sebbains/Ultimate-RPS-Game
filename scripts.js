@@ -6,29 +6,32 @@ let result = "";
 let myScore = 0;
 let aiScore = 0;
 let previousRounds = [];
-let previousGuess = "";
 const fighters ={
     Rock:{
         "name":"The Rock!",
-        "health":100,
-        "speed":1,
-        "attack":["att1","att2","att3"]
+        "health":90,
+        "speed":10,
+        "damage":20,
+        "attack":["att1","att2","att3","att4"]
     },
     Paper:{
         "name":"Paper Cut!",
-        "health":50,
-        "speed":3,
-        "attack":["att1","att2","att3"]
+        "health":30,
+        "speed":20,
+        "damage":30,
+        "attack":["att1","att2","att3","att4"]
     },
     Scissors:{
         "name":"Mr Snips!",
-        "health":75,
-        "speed":2,
-        "attack":["att1","att2","att3"]
+        "health":60,
+        "speed":30,
+        "damage":10,
+        "attack":["att1","att2","att3","att4"]
     }
 }
 let myFighter = {};
 let aiFighter = {};
+
 let RockIMG = document.getElementById("rockSVG");
 RockIMG.addEventListener("animationend", rockListener, false);
 let PaperIMG = document.getElementById("paperSVG");
@@ -36,14 +39,16 @@ PaperIMG.addEventListener("animationend", paperListener, false);
 let ScissorsIMG = document.getElementById("scissorsSVG");
 ScissorsIMG.addEventListener("animationend", scissorListener, false);
 let aiRockIMG = document.getElementById("aiRockSVG");
-//aiRockIMG.addEventListener("animationend", aiRockListener, false);
+aiRockIMG.addEventListener("animationend", aiRockListener, false);
 let aiPaperIMG = document.getElementById("aiPaperSVG");
-//aiPaperIMG.addEventListener("animationend", aiPaperListener, false);
+aiPaperIMG.addEventListener("animationend", aiPaperListener, false);
 let aiScissorsIMG = document.getElementById("aiScissorsSVG");
-//aiScissorsIMG.addEventListener("animationend", aiScissorListener, false);
-let fighterIMGs = document.getElementsByClassName("fighter");
+aiScissorsIMG.addEventListener("animationend", aiScissorsListener, false);
 let fighterAni = document.getElementById("fighterSelect");
 fighterAni.addEventListener("animationend", fighterListener, false);
+let aiFighterAni = document.getElementById("aiFighterSelect");
+aiFighterAni.addEventListener("animationend", aiFighterListener, false);
+let fighterIMGs = document.getElementsByClassName("fighter");
 
 /*
 function listener(event) {
@@ -65,6 +70,7 @@ function playGame(){
     assignmyGuess();
     createaiGuess();
     fight();
+    aiFight();
     compareGuess(myGuess, aiGuess);
     calcScores(result);
     previousRounds.push(result);
@@ -93,11 +99,10 @@ function assignmyGuess(){
     //assign front name
     myGuessName = myFighter.name;
     updateFront("myFighterText",myGuessName);
-    //console.log(myGuessName);
 
-    //update previous guess
-    previousGuess = myGuess;
-    console.log(previousGuess);
+    //set healthbar
+    let healthbar = '<progress value="'+myFighter.health+'" max="'+myFighter.health+'"></progress>'
+    document.getElementById("myHealthbar").innerHTML = healthbar;
 }
 
 function createaiGuess(){
@@ -194,6 +199,38 @@ function paperListener(event) {
 
 function scissorListener(event) {
     ScissorsIMG.classList.remove("fight1");
+}
+
+function aiFight(){
+    switch(aiGuess){
+        case "Rock":
+            aiRockIMG.classList.add("aiFight1");
+        break;
+        case "Paper": 
+            aiPaperIMG.classList.add("aiFight1");
+        break;
+        case "Scissors": 
+            aiScissorsIMG.classList.add("aiFight1");
+        break;
+    }
+    aiFighterAni.classList.add("aiAttack");
+}
+
+//reset classes post animation finish
+function aiFighterListener(event) {
+    aiFighterAni.classList.remove("aiAttack");
+}
+
+function aiRockListener(event) {
+    aiRockIMG.classList.remove("aiFight1");
+}
+
+function aiPaperListener(event) {
+    aiPaperIMG.classList.remove("aiFight1");
+}
+
+function aiScissorsListener(event) {
+    aiScissorsIMG.classList.remove("aiFight1");
 }
 
 function calcScores(res){
