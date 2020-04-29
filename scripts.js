@@ -68,25 +68,21 @@ function listener(event) {
     }
 }*/
 
-function playGame(){
-    clearChoices();
-    assignmyGuess();
-    createaiGuess();
-}
-
 function fightRound(){
     fight();
     aiFight();
     calcFight();
-    //compareGuess(myGuess, aiGuess);
-    //calcScores(result);
-    //previousRounds.push(result);
-    //updateFront("previousRounds",previousRounds);
+}
+
+function fighterChosen(fighter){
+    clearChoices();
+    myGuess = fighter;
+    assignmyGuess();
+    createaiGuess();
+    toggleModals();
 }
 
 function assignmyGuess(){
-    myGuess = document.getElementById("myGuess").value;
-
     //copy fighter object to myFighter
     myFighter = Object.assign({}, fighters[myGuess]);
 
@@ -159,36 +155,6 @@ function createaiGuess(){
     //set healthbar
     setHealthbar ("ai");
 }
-
-/*
-function compareGuess(me,ai){
-    if (me===ai){
-        result = "Draw";
-    }else{
-        switch(me){
-            case "Rock" : if (ai==="Scissors"){
-                            result="Win";
-                        }else{
-                            result="Lose";
-                        }
-                break;
-            case "Paper" : if (ai==="Rock"){
-                            result="Win";
-                        }else{
-                            result="Lose";
-                        }
-                break;
-            case "Scissors" : if(ai==="Paper"){
-                            result="Win";
-                        }else{
-                            result="Lose";
-                        }
-                break;
-        }
-    }
-    updateFront("result",result);
-}
-*/
 
 function fight(){
     switch(myGuess){
@@ -328,4 +294,11 @@ function hideIMGS(){
     for (i = 0; i < fighterIMGs.length; i++) {
     fighterIMGs[i].style.display = "none";
     }
+}
+
+function toggleModals(){
+    var modal = document.querySelector("#selectYourFighterModal");
+    var modalOverlay = document.querySelector("#modal-overlay");
+    modal.classList.toggle("closed");
+    modalOverlay.classList.toggle("closed");
 }
