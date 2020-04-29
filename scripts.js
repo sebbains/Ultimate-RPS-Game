@@ -99,10 +99,6 @@ function assignmyGuess(){
     //assign front name
     myGuessName = myFighter.name;
     updateFront("myFighterText",myGuessName);
-
-    //set healthbar
-    let healthbar = '<progress value="'+myFighter.health+'" max="'+myFighter.health+'"></progress>'
-    document.getElementById("myHealthbar").innerHTML = healthbar;
 }
 
 function createaiGuess(){
