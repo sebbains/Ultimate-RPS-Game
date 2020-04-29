@@ -10,6 +10,7 @@ const fighters ={
     Rock:{
         "name":"The Rock!",
         "health":90,
+        "maxHealth":90,
         "speed":10,
         "damage":20,
         "attack":["att1","att2","att3","att4"]
@@ -17,6 +18,7 @@ const fighters ={
     Paper:{
         "name":"Paper Cut!",
         "health":30,
+        "maxHealth":30,
         "speed":20,
         "damage":30,
         "attack":["att1","att2","att3","att4"]
@@ -24,6 +26,7 @@ const fighters ={
     Scissors:{
         "name":"Mr Snips!",
         "health":60,
+        "maxHealth":60,
         "speed":30,
         "damage":10,
         "attack":["att1","att2","att3","att4"]
@@ -69,13 +72,17 @@ function playGame(){
     clearChoices();
     assignmyGuess();
     createaiGuess();
+}
+
+function fightRound(){
     fight();
     aiFight();
-    compareGuess(myGuess, aiGuess);
-    calcScores(result);
-    previousRounds.push(result);
-    updateFront("previousRounds",previousRounds);
-};
+    calcFight();
+    //compareGuess(myGuess, aiGuess);
+    //calcScores(result);
+    //previousRounds.push(result);
+    //updateFront("previousRounds",previousRounds);
+}
 
 function assignmyGuess(){
     myGuess = document.getElementById("myGuess").value;
@@ -101,8 +108,17 @@ function assignmyGuess(){
     updateFront("myFighterText",myGuessName);
 
     //set healthbar
-    let healthbar = '<progress value="'+myFighter.health+'" max="'+myFighter.health+'"></progress>'
-    document.getElementById("myHealthbar").innerHTML = healthbar;
+    setHealthbar ("me");
+}
+
+function setHealthbar(who){
+    if(who==="me"){
+        let healthbar = '<progress value="'+myFighter.health+'" max="'+myFighter.maxHealth+'"></progress>'
+        document.getElementById("myHealthbar").innerHTML = healthbar;
+    }else{
+        let healthbar = '<progress value="'+aiFighter.health+'" max="'+aiFighter.maxHealth+'"></progress>'
+        document.getElementById("aiHealthbar").innerHTML = healthbar;
+    };
 }
 
 function createaiGuess(){
@@ -139,8 +155,12 @@ function createaiGuess(){
     //assign front name
     aiGuessName = aiFighter.name;
     updateFront("aiFighterText",aiGuessName);
+
+    //set healthbar
+    setHealthbar ("ai");
 }
 
+/*
 function compareGuess(me,ai){
     if (me===ai){
         result = "Draw";
@@ -168,6 +188,7 @@ function compareGuess(me,ai){
     }
     updateFront("result",result);
 }
+*/
 
 function fight(){
     switch(myGuess){
@@ -231,6 +252,36 @@ function aiPaperListener(event) {
 
 function aiScissorsListener(event) {
     aiScissorsIMG.classList.remove("aiFight1");
+}
+
+function calcFight(){
+    if (myFighter.speed > aiFighter.speed){
+        aiFighter.health -= myFighter.damage;
+        if(aiFighter.health<=0){
+            result="Game over, you win!";
+            updateFront("result",result);
+        }
+        setHealthbar ("ai");
+        myFighter.health -= aiFighter.damage;
+        if(myFighter.health<=0){
+            result="Game over, you lose!";
+            updateFront("result",result);
+        }
+        setHealthbar ("me");
+    }else{
+        myFighter.health -= aiFighter.damage;
+        if(myFighter.health<=0){
+            result="Game over, you lose!";
+            updateFront("result",result);
+        }
+        setHealthbar ("me");
+        aiFighter.health -= myFighter.damage;
+        if(aiFighter.health<=0){
+            result="Game over, you win!";
+            updateFront("result",result);
+        }
+        setHealthbar ("ai");
+    }
 }
 
 function calcScores(res){

@@ -29,12 +29,11 @@
                     <option value="Paper">Paper</option>
                     <option value="Scissors">Scissors</option>
                 </select>
-                <input id="fight" type="button" value="Fight" onclick="playGame();">
+                <input id="fight" type="button" value="Select Your Ultimate Fighter" onclick="playGame();">
                 <input id="reset" type="button" value="Reset" onclick="resetGame();">
             </form>
             <div id="resultContainer">
-                <p>The result is you :</p>
-                <p id="result"></p>
+                <h3 id="result">?</h3>
             </div>
             <section class="battleArena">
                 <div class ="arena" id="myArena">
@@ -99,10 +98,11 @@
                             <h3 id="myFighterText">?</h3>
                         </div>
                         <div class="health" id="myHealthbar">
-                            <!--<progress value="25" max="50"></progress>-->
                         </div>
                         <div id="attackContainer">
-                            <button>attack 1</button>
+                            <button onclick="fightRound();">Attack</button>
+                            <button>Dodge</button>
+                            <button>Spin</button>
                         </div>
                     </div>
                 </div>
@@ -170,6 +170,9 @@
                         <div class="fighterName" id="aiFighterName">
                             <h3 id="aiFighterText">?</h3>
                         </div>
+                        <div class="health" id="aiHealthbar">
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
