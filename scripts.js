@@ -35,23 +35,26 @@ const fighters ={
 let myFighter = {};
 let aiFighter = {};
 
-let RockIMG = document.getElementById("rockSVG");
+var RockIMG = document.getElementById("rockSVG");
 RockIMG.addEventListener("animationend", rockListener, false);
-let PaperIMG = document.getElementById("paperSVG");
+var PaperIMG = document.getElementById("paperSVG");
 PaperIMG.addEventListener("animationend", paperListener, false);
-let ScissorsIMG = document.getElementById("scissorsSVG");
+var ScissorsIMG = document.getElementById("scissorsSVG");
 ScissorsIMG.addEventListener("animationend", scissorListener, false);
-let aiRockIMG = document.getElementById("aiRockSVG");
+var aiRockIMG = document.getElementById("aiRockSVG");
 aiRockIMG.addEventListener("animationend", aiRockListener, false);
-let aiPaperIMG = document.getElementById("aiPaperSVG");
+var aiPaperIMG = document.getElementById("aiPaperSVG");
 aiPaperIMG.addEventListener("animationend", aiPaperListener, false);
-let aiScissorsIMG = document.getElementById("aiScissorsSVG");
+var aiScissorsIMG = document.getElementById("aiScissorsSVG");
 aiScissorsIMG.addEventListener("animationend", aiScissorsListener, false);
-let fighterAni = document.getElementById("fighterSelect");
+var fighterAni = document.getElementById("fighterSelect");
 fighterAni.addEventListener("animationend", fighterListener, false);
-let aiFighterAni = document.getElementById("aiFighterSelect");
+var aiFighterAni = document.getElementById("aiFighterSelect");
 aiFighterAni.addEventListener("animationend", aiFighterListener, false);
-let fighterIMGs = document.getElementsByClassName("fighter");
+var fighterIMGs = document.getElementsByClassName("fighter");
+var selectFighterModal = document.querySelector("#selectYourFighterModal");
+var resultModal = document.querySelector("#resultModal");
+var modalOverlay = document.querySelector("#modalOverlay");
 
 /*
 function listener(event) {
@@ -79,7 +82,7 @@ function fighterChosen(fighter){
     myGuess = fighter;
     assignmyGuess();
     createaiGuess();
-    toggleModals();
+    toggleModals(selectFighterModal);
 }
 
 function assignmyGuess(){
@@ -224,29 +227,44 @@ function calcFight(){
     if (myFighter.speed > aiFighter.speed){
         aiFighter.health -= myFighter.damage;
         if(aiFighter.health<=0){
-            result="Game over, you win!";
+            result="Congratulations, you win!!!";
             updateFront("result",result);
+            toggleModals(resultModal);
+
         }
         setHealthbar ("ai");
         myFighter.health -= aiFighter.damage;
         if(myFighter.health<=0){
-            result="Game over, you lose!";
+            result="Oh no, you lost!";
             updateFront("result",result);
+            toggleModals(resultModal);
         }
         setHealthbar ("me");
-    }else{
+    }else if (myFighter.speed < aiFighter.speed){
         myFighter.health -= aiFighter.damage;
         if(myFighter.health<=0){
-            result="Game over, you lose!";
+            result="Oh no, you lost!";
             updateFront("result",result);
+            toggleModals(resultModal);
         }
         setHealthbar ("me");
         aiFighter.health -= myFighter.damage;
         if(aiFighter.health<=0){
-            result="Game over, you win!";
+            result="Congratulations, you win!!!";
             updateFront("result",result);
+            toggleModals(resultModal);
         }
         setHealthbar ("ai");
+    } else{
+        myFighter.health -= aiFighter.damage;
+        setHealthbar ("me");
+        aiFighter.health -= myFighter.damage;
+        setHealthbar ("ai");
+        if(myFighter.health<=0){
+            result="How did you manage that? It was a draw!";
+            updateFront("result",result);
+            toggleModals(resultModal);
+        }        
     }
 }
 
@@ -270,12 +288,10 @@ function updateFront(item, result){
 
 function resetGame(){
     clearChoices();
-    myScore = 0;
-    updateFront("myScore",myScore);
-    aiScore = 0;
-    updateFront("aiScore",aiScore);
     previousRounds = [];
     updateFront("previousRounds",previousRounds);
+    toggleModals(resultModal);
+    toggleModals(selectFighterModal);
 }
 
 function clearChoices(){
@@ -296,9 +312,7 @@ function hideIMGS(){
     }
 }
 
-function toggleModals(){
-    var modal = document.querySelector("#selectYourFighterModal");
-    var modalOverlay = document.querySelector("#modal-overlay");
-    modal.classList.toggle("closed");
+function toggleModals(modalOption){
+    modalOption.classList.toggle("closed");
     modalOverlay.classList.toggle("closed");
 }

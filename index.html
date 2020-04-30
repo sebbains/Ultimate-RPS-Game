@@ -12,9 +12,6 @@
             <h1>Ultimate RPS Fighter</h1>
         </header>
         <main>
-            <div id="resultContainer">
-                <h3 id="result">?</h3>
-            </div>
             <section class="battleArena">
                 <div class ="arena" id="myArena">
                     <div id="myFighter">
@@ -164,7 +161,7 @@
     </div>
     <!--Start Fighter select modal-->
     <div class="modal" id="selectYourFighterModal">
-        <div id="modalTitle">
+        <div class="modalTitle">
             <h2>Select your fighter</h2>
         </div>
         <div id="fighterSelection">
@@ -261,7 +258,20 @@
         </div>
     </div>
     <!--End Fighter select modal-->
-    <div class="modal-overlay" id="modal-overlay">
+    <!--Start Result modal-->
+    <div class="modal closed" id="resultModal">
+        <div class="modalTitle">
+            <h2>Game over!</h2>
+        </div>
+        <div id="resultContainer">
+            <h2 id="result"></h2>
+            <div>
+                <button onclick="resetGame();">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <!--End Result modal-->
+    <div class="modalOverlay" id="modalOverlay">
     </div>
     <script type="text/javascript" src="scripts.js"></script>
 </body>
