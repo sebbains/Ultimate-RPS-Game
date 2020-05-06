@@ -316,3 +316,29 @@ function toggleModals(modalOption){
     modalOption.classList.toggle("closed");
     modalOverlay.classList.toggle("closed");
 }
+
+function loadStats(){
+    //Rock Stats
+    var rockHealthLoaded = document.getElementById("rockHealth");
+    rockHealthLoaded.setAttribute("value", fighters.Rock.health);
+    var rockSpeedLoaded = document.getElementById("rockSpeed");
+    rockSpeedLoaded.setAttribute("value", fighters.Rock.speed);
+    var rockDamageLoaded = document.getElementById("rockDamage");
+    rockDamageLoaded.setAttribute("value", fighters.Rock.damage);
+    
+    //Scissor Stats
+    var scissorsHealthLoaded = document.getElementById("scissorsHealth");
+    scissorsHealthLoaded.setAttribute("value", fighters.Scissors.health);
+    var scissorsSpeedLoaded = document.getElementById("scissorsSpeed");
+    scissorsSpeedLoaded.setAttribute("value", fighters.Scissors.speed);
+    var scissorsDamageLoaded = document.getElementById("scissorsDamage");
+    scissorsDamageLoaded.setAttribute("value", fighters.Scissors.damage);
+
+    //Paper Stats
+    var paperHealthLoaded = document.getElementById("paperHealth");
+    paperHealthLoaded.setAttribute("value", fighters.Paper.health);
+    var paperSpeedLoaded = document.getElementById("paperSpeed");
+    paperSpeedLoaded.setAttribute("value", fighters.Paper.speed);
+    var paperDamageLoaded = document.getElementById("paperDamage");
+    paperDamageLoaded.setAttribute("value", fighters.Paper.damage);
+}

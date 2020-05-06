@@ -6,7 +6,7 @@
     <title>Rock Paper Scissors Game</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body onload="loadStats()">
     <div class="container">
         <header>
             <h1>Ultimate RPS Fighter</h1>
@@ -165,96 +165,123 @@
             <h2>Select your fighter</h2>
         </div>
         <div id="fighterSelection">
-            <a class="modalFighter" id="rockSelect" onclick='fighterChosen("Rock")' href="#">
-                <?xml version="1.0" encoding="UTF-8"?>
-                <!-- Rock Created with Inkscape (http://www.inkscape.org/) -->
-                <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <metadata>
-                    <rdf:RDF>
-                    <cc:Work rdf:about="">
-                        <dc:format>image/svg+xml</dc:format>
-                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-                        <dc:title/>
-                    </cc:Work>
-                    </rdf:RDF>
-                    </metadata>
-                    <g transform="translate(0 -270.54)">
-                    <path class="myRock" id="" d="m8.7983 290.22 6.0533-9.6196 1.4606 9.8282m-7.3165-11.058 5.906 1.0668 3.0371-1.5665m-11.17 4.3704 2.2269-3.8707 4.277-2.2449 4.6661 1.7452 1.7493 8.039-3.376 3.5185-7.5139-0.20855z" fill="none" stroke="#000" stroke-width=".26458px"/>
-                    </g>
-                </svg>
-                <div class="fighterName" id="">
-                    <h3 id="">The Rock!</h3>
-                </div>
-                <div class="health" id="rockHealth">
-                    <span>Health:</span><progress value="90" max="90"></progress>
-                </div>
-                <div class="speed" id="rockSpeed">
-                    <span>Speed:</span><progress value="10" max="30"></progress>
-                </div>
-                <div class="damage" id="rockDamage">
-                    <span>Damage:</span><progress value="20" max="30"></progress>
-                </div>
-            </a>
-            <a class="modalFighter" id="paperSelect" onclick='fighterChosen("Paper")' href="#">
-                <?xml version="1.0" encoding="UTF-8"?>
-                <!-- Created with Inkscape (http://www.inkscape.org/) -->
-                <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <metadata>
-                    <rdf:RDF>
-                    <cc:Work rdf:about="">
-                        <dc:format>image/svg+xml</dc:format>
-                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-                        <dc:title/>
-                    </cc:Work>
-                    </rdf:RDF>
-                    </metadata>
-                    <g transform="translate(0 -270.54)">
-                    <path class="myPaper" d="m9.6809 288.77h6.6256m-6.6077-1.8917h6.6256m-6.6857-1.8004h6.6256m-6.6122-1.689h6.6256m-6.6857-1.8004h6.6256m-0.0346-5.9767v3.1774l2.6222 0.0118h-3e-6m-11.15-3.1892 0.18899 16.324h10.961v-13.135l-2.6222-3.1892z" fill="none" stroke="#000" stroke-width=".26458px"/>
-                    </g>
-                </svg>
-                <div class="fighterName" id="">
-                    <h3 id="">Paper Cut!</h3>
-                </div>
-                <div class="health" id="paperHealth">
-                    <span>Health:</span><progress value="30" max="90"></progress>
-                </div>
-                <div class="speed" id="paperSpeed">
-                    <span>Speed:</span><progress value="20" max="30"></progress>
-                </div>
-                <div class="damage" id="paperDamage">
-                    <span>Damage:</span><progress value="30" max="30"></progress>
-                </div>
-            </a>
-            <a class="modalFighter" id="scissorSelect" onclick='fighterChosen("Scissors")' href="#">
-                <?xml version="1.0" encoding="UTF-8"?>
-                <!-- Created with Inkscape (http://www.inkscape.org/) -->
-                <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <metadata>
-                    <rdf:RDF>
-                    <cc:Work rdf:about="">
-                        <dc:format>image/svg+xml</dc:format>
-                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-                        <dc:title/>
-                    </cc:Work>
-                    </rdf:RDF>
-                    </metadata>
-                    <g transform="translate(0 -270.54)">
-                    <path class="myScissors" d="m16.132 286.84a2.1325 2.1798 0 0 0-2.1322 2.1802 2.1325 2.1798 0 0 0 2.1322 2.1797 2.1325 2.1798 0 0 0 2.1327-2.1797 2.1325 2.1798 0 0 0-2.1327-2.1802zm-0.02015 0.66869a1.5166 1.5206 0 0 1 1.5167 1.5203 1.5166 1.5206 0 0 1-1.5167 1.5208 1.5166 1.5206 0 0 1-1.5162-1.5208 1.5166 1.5206 0 0 1 1.5162-1.5203zm-2.6306-1.35 0.95574 2.0112 1.0551-1.2333-1.2564-2.1281zm-4.6057-8.0041 3.2526 5.6989 0.72099-1.2667-2.7019-4.9703c-0.60155-1.1359-2.0012-0.56681-1.2717 0.53817zm7.6155-1.1682-5.6393 10.328 1.137 0.77442 5.4999-10.447c0.77116-1.1379-0.21374-1.9179-0.99765-0.65538zm-6.1654 9.7601a2.1325 2.1798 0 0 0-2.1327 2.1797 2.1325 2.1798 0 0 0 2.1327 2.1797 2.1325 2.1798 0 0 0 2.1322-2.1797 2.1325 2.1798 0 0 0-2.1322-2.1797zm-0.02067 0.66817a1.5166 1.5206 0 0 1 1.5167 1.5208 1.5166 1.5206 0 0 1-1.5167 1.5203 1.5166 1.5206 0 0 1-1.5162-1.5203 1.5166 1.5206 0 0 1 1.5162-1.5208z"/>
-                    </g>
-                </svg>
-                <div class="fighterName" id="">
-                    <h3 id="">Mr Snips!</h3>
-                </div>
-                <div class="health" id="scissorsHealth">
-                    <span>Health:</span><progress value="60" max="90"></progress>
-                </div>
-                <div class="speed" id="scissorsSpeed">
-                    <span>Speed:</span><progress value="30" max="30"></progress>
-                </div>
-                <div class="damage" id="scissorsDamage">
-                    <span>Damage:</span><progress value="10" max="30"></progress>
-                </div>
-            </a>            
+            <div class="fighterSelection">
+                <a class="modalFighter" id="rockSelect" onclick='fighterChosen("Rock")' href="#">
+                    <div>
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <!-- Rock Created with Inkscape (http://www.inkscape.org/) -->
+                        <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                            <metadata>
+                            <rdf:RDF>
+                            <cc:Work rdf:about="">
+                                <dc:format>image/svg+xml</dc:format>
+                                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                <dc:title/>
+                            </cc:Work>
+                            </rdf:RDF>
+                            </metadata>
+                            <g transform="translate(0 -270.54)">
+                            <path class="myRock" id="" d="m8.7983 290.22 6.0533-9.6196 1.4606 9.8282m-7.3165-11.058 5.906 1.0668 3.0371-1.5665m-11.17 4.3704 2.2269-3.8707 4.277-2.2449 4.6661 1.7452 1.7493 8.039-3.376 3.5185-7.5139-0.20855z" fill="none" stroke="#000" stroke-width=".26458px"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="fighterName" id="">
+                        <h3 id="">The Rock!</h3>
+                    </div>
+                    <div class="stats">
+                        <div class="health">
+                            <div>Health:</div>
+                            <div><progress id="rockHealth" value="" max="90"></progress></div>
+                        </div>
+                        <div class="speed">
+                            <div>Speed:</div>
+                            <div><progress id="rockSpeed" value="" max="30"></progress></div>
+                        </div>
+                        <div class="damage">
+                            <div>Damage:</div>
+                            <div><progress id="rockDamage" value="" max="30"></progress></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="fighterSelection">
+                <a class="modalFighter" id="paperSelect" onclick='fighterChosen("Paper")' href="#">
+                    <div>
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <!-- Created with Inkscape (http://www.inkscape.org/) -->
+                        <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                            <metadata>
+                            <rdf:RDF>
+                            <cc:Work rdf:about="">
+                                <dc:format>image/svg+xml</dc:format>
+                                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                <dc:title/>
+                            </cc:Work>
+                            </rdf:RDF>
+                            </metadata>
+                            <g transform="translate(0 -270.54)">
+                            <path class="myPaper" d="m9.6809 288.77h6.6256m-6.6077-1.8917h6.6256m-6.6857-1.8004h6.6256m-6.6122-1.689h6.6256m-6.6857-1.8004h6.6256m-0.0346-5.9767v3.1774l2.6222 0.0118h-3e-6m-11.15-3.1892 0.18899 16.324h10.961v-13.135l-2.6222-3.1892z" fill="none" stroke="#000" stroke-width=".26458px"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="fighterName" id="">
+                        <h3 id="">Paper Cut!</h3>
+                    </div>
+                    <div class="stats">
+                        <div class="health">
+                            <div>Health:</div>
+                            <div><progress id="paperHealth" value="" max="90"></progress></div>
+                        </div>
+                        <div class="speed">
+                            <div>Speed:</div>
+                            <div><progress id="paperSpeed" value="" max="30"></progress></div>
+                        </div>
+                        <div class="damage">
+                            <div>Damage:</div>
+                            <div><progress id="paperDamage" value="" max="30"></progress></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="fighterSelection">
+                <a class="modalFighter" id="scissorSelect" onclick='fighterChosen("Scissors")' href="#">
+                    <div>
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <!-- Created with Inkscape (http://www.inkscape.org/) -->
+                        <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                            <metadata>
+                            <rdf:RDF>
+                            <cc:Work rdf:about="">
+                                <dc:format>image/svg+xml</dc:format>
+                                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                <dc:title/>
+                            </cc:Work>
+                            </rdf:RDF>
+                            </metadata>
+                            <g transform="translate(0 -270.54)">
+                            <path class="myScissors" d="m16.132 286.84a2.1325 2.1798 0 0 0-2.1322 2.1802 2.1325 2.1798 0 0 0 2.1322 2.1797 2.1325 2.1798 0 0 0 2.1327-2.1797 2.1325 2.1798 0 0 0-2.1327-2.1802zm-0.02015 0.66869a1.5166 1.5206 0 0 1 1.5167 1.5203 1.5166 1.5206 0 0 1-1.5167 1.5208 1.5166 1.5206 0 0 1-1.5162-1.5208 1.5166 1.5206 0 0 1 1.5162-1.5203zm-2.6306-1.35 0.95574 2.0112 1.0551-1.2333-1.2564-2.1281zm-4.6057-8.0041 3.2526 5.6989 0.72099-1.2667-2.7019-4.9703c-0.60155-1.1359-2.0012-0.56681-1.2717 0.53817zm7.6155-1.1682-5.6393 10.328 1.137 0.77442 5.4999-10.447c0.77116-1.1379-0.21374-1.9179-0.99765-0.65538zm-6.1654 9.7601a2.1325 2.1798 0 0 0-2.1327 2.1797 2.1325 2.1798 0 0 0 2.1327 2.1797 2.1325 2.1798 0 0 0 2.1322-2.1797 2.1325 2.1798 0 0 0-2.1322-2.1797zm-0.02067 0.66817a1.5166 1.5206 0 0 1 1.5167 1.5208 1.5166 1.5206 0 0 1-1.5167 1.5203 1.5166 1.5206 0 0 1-1.5162-1.5203 1.5166 1.5206 0 0 1 1.5162-1.5208z"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="fighterName" id="">
+                        <h3 id="">Mr Snips!</h3>
+                    </div>
+                    <div class="stats">
+                        <div class="health">
+                            <div>Health:</div>
+                            <div><progress id="scissorsHealth" value="" max="90"></progress></div>
+                        </div>
+                        <div class="speed" >
+                            <div>Speed:</div>
+                            <div><progress id="scissorsSpeed" value="" max="30"></progress></div>
+                        </div>
+                        <div class="damage">
+                            <div>Damage:</div>
+                            <div><progress id="scissorsDamage" value="" max="30"></progress></div>
+                        </div>
+                    </div>
+                </a>   
+            </div>         
         </div>
     </div>
     <!--End Fighter select modal-->
