@@ -19,3 +19,11 @@ Originally developed as the traditional RPS game I decided to pivot into a more 
 * Initial project planning
 * Naming conventions
 * Lot's more of the DOM to explore
+* Better code commenting
+* Include browser specific styling
+
+## Still to add
+* Remaining animations
+* Fight algorithim
+* Rounds ticker
+* Responsive media queries
