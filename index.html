@@ -149,9 +149,9 @@
             </section>
             <section>
                 <div id="attackContainer">
-                    <button onclick="fightRound();">Attack</button>
-                    <button>Dodge</button>
-                    <button>Spin</button>
+                    <button onclick="battle(myFighter,3,aiFighter);">Attack</button>
+                    <button onclick="battle(myFighter,1,aiFighter);">Damage Boost</button>
+                    <button onclick="battle(myFighter,2,aiFighter);">Spin Speed Boost</button>
                 </div>
             </section>
         </main>
@@ -303,5 +303,6 @@
     <div class="modalOverlay" id="modalOverlay">
     </div>
     <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="fights.js"></script>
 </body>
 </html>

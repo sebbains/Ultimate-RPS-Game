@@ -5,7 +5,11 @@ let myGuessName ="?";
 let result = "";
 let myScore = 0;
 let aiScore = 0;
+let round = 1;
+let move1 = "i did something";
+let move2 = "he did something";
 let previousRounds = [];
+let aiChoice = 0;
 const fighters ={
     Rock:{
         "name":"The Rock!",
@@ -223,6 +227,7 @@ function aiScissorsListener(event) {
     aiScissorsIMG.classList.remove("aiFight1");
 }
 
+/*
 function calcFight(){
     if (myFighter.speed > aiFighter.speed){
         aiFighter.health -= myFighter.damage;
@@ -267,7 +272,9 @@ function calcFight(){
         }        
     }
 }
+*/
 
+/*
 function calcScores(res){
     if(res==="Win"){
         myScore++;
@@ -279,7 +286,7 @@ function calcScores(res){
     }
     updateFront("myScore",myScore);
     updateFront("aiScore",aiScore);
-}
+}*/
 
 function updateFront(item, result){
     let resultMap = document.getElementById(item);
