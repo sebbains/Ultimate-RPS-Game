@@ -24,6 +24,4 @@ Originally developed as the traditional RPS game I decided to pivot into a more 
 
 ## Still to add
 * Remaining animations
-* Fight algorithim
-* Rounds ticker
 * Responsive media queries

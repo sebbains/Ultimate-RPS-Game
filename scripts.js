@@ -3,13 +3,15 @@ let aiGuessName = "?";
 let myGuess = "";
 let myGuessName ="?";
 let result = "";
-let myScore = 0;
-let aiScore = 0;
-let round = 1;
-let move1 = "i did something";
-let move2 = "he did something";
-let previousRounds = [];
+//let myScore = 0;
+//let aiScore = 0;
+//let myDecision = "";
+//let round = 1;
+//let move1 = "";
+//let move2 = "";
+//let previousRounds = [];
 let aiChoice = 0;
+//let continueBattle = "Y";
 const fighters ={
     Rock:{
         "name":"The Rock!",
@@ -38,6 +40,7 @@ const fighters ={
 }
 let myFighter = {};
 let aiFighter = {};
+
 
 var RockIMG = document.getElementById("rockSVG");
 RockIMG.addEventListener("animationend", rockListener, false);
@@ -74,12 +77,6 @@ function listener(event) {
         break;
     }
 }*/
-
-function fightRound(){
-    fight();
-    aiFight();
-    calcFight();
-}
 
 function fighterChosen(fighter){
     clearChoices();
@@ -181,6 +178,14 @@ function fight(){
 //reset classes post animation finish
 function fighterListener(event) {
     fighterAni.classList.remove("myAttack");
+    console.log("myFighter listener fired");
+    if (myCounter>=1){
+        console.log("but no action taken");
+    }else{
+        console.log("actually calling myAttackB")
+        myAttackB();
+        myCounter++;
+    }
 }
 
 function rockListener(event) {
@@ -213,6 +218,14 @@ function aiFight(){
 //reset classes post animation finish
 function aiFighterListener(event) {
     aiFighterAni.classList.remove("aiAttack");
+    console.log("aiFighter listener fired");
+    if (aiCounter>=1){
+        console.log("but no action taken");
+    }else{
+        console.log("actually calling aiAttackB")
+        aiAttackB();
+        aiCounter++;
+    }
 }
 
 function aiRockListener(event) {
@@ -226,67 +239,6 @@ function aiPaperListener(event) {
 function aiScissorsListener(event) {
     aiScissorsIMG.classList.remove("aiFight1");
 }
-
-/*
-function calcFight(){
-    if (myFighter.speed > aiFighter.speed){
-        aiFighter.health -= myFighter.damage;
-        if(aiFighter.health<=0){
-            result="Congratulations, you win!!!";
-            updateFront("result",result);
-            toggleModals(resultModal);
-
-        }
-        setHealthbar ("ai");
-        myFighter.health -= aiFighter.damage;
-        if(myFighter.health<=0){
-            result="Oh no, you lost!";
-            updateFront("result",result);
-            toggleModals(resultModal);
-        }
-        setHealthbar ("me");
-    }else if (myFighter.speed < aiFighter.speed){
-        myFighter.health -= aiFighter.damage;
-        if(myFighter.health<=0){
-            result="Oh no, you lost!";
-            updateFront("result",result);
-            toggleModals(resultModal);
-        }
-        setHealthbar ("me");
-        aiFighter.health -= myFighter.damage;
-        if(aiFighter.health<=0){
-            result="Congratulations, you win!!!";
-            updateFront("result",result);
-            toggleModals(resultModal);
-        }
-        setHealthbar ("ai");
-    } else{
-        myFighter.health -= aiFighter.damage;
-        setHealthbar ("me");
-        aiFighter.health -= myFighter.damage;
-        setHealthbar ("ai");
-        if(myFighter.health<=0){
-            result="How did you manage that? It was a draw!";
-            updateFront("result",result);
-            toggleModals(resultModal);
-        }        
-    }
-}
-*/
-
-/*
-function calcScores(res){
-    if(res==="Win"){
-        myScore++;
-    }else if(res==="Lose"){
-        aiScore++;
-    }else{
-        myScore++;
-        aiScore++;
-    }
-    updateFront("myScore",myScore);
-    updateFront("aiScore",aiScore);
-}*/
 
 function updateFront(item, result){
     let resultMap = document.getElementById(item);
