@@ -160,19 +160,21 @@ function createaiGuess(){
     setHealthbar ("ai");
 }
 
-function fight(){
+function fight(myAttackClass){
     switch(myGuess){
         case "Rock":
-            RockIMG.classList.add("fight1");
+            RockIMG.classList.add(myAttackClass);
         break;
         case "Paper": 
-            PaperIMG.classList.add("fight1");
+            PaperIMG.classList.add(myAttackClass);
         break;
         case "Scissors": 
-            ScissorsIMG.classList.add("fight1");
+            ScissorsIMG.classList.add(myAttackClass);
         break;
     }
-    fighterAni.classList.add("myAttack");
+    if(myAttackClass==="fight1"){
+        fighterAni.classList.add("myAttack");
+    }
 }
 
 //reset classes post animation finish
@@ -189,30 +191,33 @@ function fighterListener(event) {
 }
 
 function rockListener(event) {
-    RockIMG.classList.remove("fight1");
+    RockIMG.classList.remove(myAttackClass);
 }
 
 function paperListener(event) {
-    PaperIMG.classList.remove("fight1");
+    PaperIMG.classList.remove(myAttackClass);
 }
 
 function scissorListener(event) {
-    ScissorsIMG.classList.remove("fight1");
+    ScissorsIMG.classList.remove(myAttackClass);
 }
 
-function aiFight(){
+function aiFight(aiAttackClass){
+    //console.log("ai attack class is "+aiAttackClass);
     switch(aiGuess){
         case "Rock":
-            aiRockIMG.classList.add("aiFight1");
+            aiRockIMG.classList.add(aiAttackClass);
         break;
         case "Paper": 
-            aiPaperIMG.classList.add("aiFight1");
+            aiPaperIMG.classList.add(aiAttackClass);
         break;
         case "Scissors": 
-            aiScissorsIMG.classList.add("aiFight1");
+            aiScissorsIMG.classList.add(aiAttackClass);
         break;
     }
-    aiFighterAni.classList.add("aiAttack");
+    if(aiAttackClass==="aiFight1"){
+        aiFighterAni.classList.add("aiAttack");
+    }   
 }
 
 //reset classes post animation finish
@@ -229,15 +234,15 @@ function aiFighterListener(event) {
 }
 
 function aiRockListener(event) {
-    aiRockIMG.classList.remove("aiFight1");
+    aiRockIMG.classList.remove(aiAttackClass);
 }
 
 function aiPaperListener(event) {
-    aiPaperIMG.classList.remove("aiFight1");
+    aiPaperIMG.classList.remove(aiAttackClass);
 }
 
 function aiScissorsListener(event) {
-    aiScissorsIMG.classList.remove("aiFight1");
+    aiScissorsIMG.classList.remove(aiAttackClass);
 }
 
 function updateFront(item, result){

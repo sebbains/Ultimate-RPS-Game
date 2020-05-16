@@ -1,7 +1,12 @@
+//add round/hit/miss animations
+//speed attribute affecting hit/miss too much, limit iteration number or affectiveness
+//apply disable modal when fighting, toggle post animation CB = N
+
 //selected fighters
 //var myFighter = {};
 //var aiFighter = {};
 
+//eventlistener counters
 var myCounter = 0;
 var aiCounter = 0;
 
@@ -15,8 +20,10 @@ var previousRounds = [];
 
 //selected actions for round
 var myRoundAction = "";
+var myAttackClass = "";
 var aiRoundAction = "";
-
+var aiAttackClass = "";
+ 
 //loaded actions and status'
 var action1Complete = false;
 var action2Complete = false;
@@ -108,7 +115,7 @@ function myAttackA(){
     myActionText = "I "+actionText;
 
     //3 run my attack animation
-    fight();
+    fight(myAttackClass);
 }
 function myAttackB(){
     //my post animationevent listener actions
@@ -147,7 +154,7 @@ function aiAttackA(){
     aiActionText = "The AI "+actionText;
 
     //3 run ai attack animation
-    aiFight();
+    aiFight(aiAttackClass);
 }
 function aiAttackB(){
     //ai post animationevent listener actions
@@ -173,7 +180,7 @@ function aiAttackB(){
     actionPhaseCheck();
 }
 function aiChoiceDecider(){
-    aiRoundAction = (Math.floor(Math.random()*4)+1);
+    aiRoundAction = (Math.floor(Math.random()*3)+1);
 }
 
 
@@ -184,27 +191,51 @@ function attack(x,xChoice,y){
             //damage boost move
             x.damage *= 1.5;
             actionText = "increased damage to "+x.damage;
+                //set attack classname depending on who the attacker is
+                if(x===myFighter){
+                    myAttackClass = "fight2";
+                }else if(x===aiFighter){
+                    aiAttackClass = "aiFight2";
+                }      
             break;
         case 2:
             //agility move boost
             x.speed *= 1.5;
             actionText = "increased speed to "+x.speed;
+                //set attack classname depending on who the attacker is
+                if(x===myFighter){
+                    myAttackClass = "fight3";
+                }else if(x===aiFighter){
+                    aiAttackClass = "aiFight3";
+                }
             break;
         case 3:
             //actualy attacks the enemy
             //hit or miss
             if(hitOrMiss(x,y) === "hit"){
                 actionText = "hit the enemy!"
+                    //set attack classname depending on who the attacker is
+                    if(x===myFighter){
+                        myAttackClass = "fight1";
+                    }else if(x===aiFighter){
+                        aiAttackClass = "aiFight1";
+                    }
                 //apply damage
-                y.health -= x.damage;
+                y.health -= x.damage;    
             }else{
                 actionText = "attacked but missed..."
+                    //set attack classname depending on who the attacker is
+                    if(x===myFighter){
+                        myAttackClass = "fight1";
+                    }else if(x===aiFighter){
+                        aiAttackClass = "aiFight1";
+                    }
             }
             break;
     }
 }
 function hitOrMiss(x,y){
-    //calculates hit or miss based on both players speed and random 0.75 chance
+    //calculates hit or miss based on both players speed and random 0.66 chance
     let hitOrMissRandom = Math.random();
     // attacker and defender speed advantages
     let xMultiplier = x.speed/100;
@@ -212,7 +243,7 @@ function hitOrMiss(x,y){
     //calculate final chance of hit or miss
     let hitChance = hitOrMissRandom + xMultiplier - yMultiplier;
     //console.log("final chance was: "+hitChance);
-    if(hitChance>0.25){
+    if(hitChance>0.33){
         return "hit";
     }
 }
