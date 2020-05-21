@@ -1,7 +1,3 @@
-//add round/hit/miss animations
-//speed attribute affecting hit/miss too much, limit iteration number or affectiveness
-//apply disable modal when fighting, toggle post animation CB = N
-
 //selected fighters
 //var myFighter = {};
 //var aiFighter = {};
@@ -29,6 +25,10 @@ var action1Complete = false;
 var action2Complete = false;
 var firstPlayer = "";
 
+//front hit or miss messsages
+let frontMyHoM = document.getElementById("myHoM");
+let frontAiHoM = document.getElementById("aiHoM");
+
 //roundBegin(1);
 
 function roundBegin(chosenAction){
@@ -39,7 +39,9 @@ function roundBegin(chosenAction){
     myCounter = 0;
     aiCounter = 0;
 
-    //1 activate noaction modal
+    //1 activate noaction modal (0% opacity)
+    modalOverlay.classList.toggle("closed");
+    modalOverlay.style.opacity = "0%";
 
     //2 set global variable for future function calls
     myRoundAction = chosenAction;
@@ -120,7 +122,13 @@ function myAttackA(){
 function myAttackB(){
     //my post animationevent listener actions
     console.log("running myAttackB");
-    //4 animate hit/miss modal  
+
+    //4 animate hit/miss msg
+    if(myRoundAction===3){
+        updateFront("aiHoM",HoMCounter);
+        frontAiHoM.style.opacity="1";
+        HoMCounter === "Hit" ? frontAiHoM.style.color="#6fffe9" : frontAiHoM.style.color="#8B0000";
+    }    
     
     //5 check if won else update ai health        
     if(aiFighter.health <= 0){
@@ -159,7 +167,13 @@ function aiAttackA(){
 function aiAttackB(){
     //ai post animationevent listener actions
     console.log("running aiAttackB");
-    //4 animate hit/miss modal
+
+    //4 animate hit/miss msg
+    if(aiRoundAction===3){
+        updateFront("myHoM",HoMCounter);
+        frontMyHoM.style.opacity="1";
+        HoMCounter === "Hit" ? frontMyHoM.style.color="##fff" : frontMyHoM.style.color="#8B0000";
+    }    
 
     //5 check if won else update my health        
     if(myFighter.health <= 0){
@@ -189,7 +203,7 @@ function attack(x,xChoice,y){
     switch (xChoice){
         case 1: 
             //damage boost move
-            x.damage *= 1.5;
+            x.damage *= 1.3;
             actionText = "increased damage to "+x.damage;
                 //set attack classname depending on who the attacker is
                 if(x===myFighter){
@@ -200,7 +214,7 @@ function attack(x,xChoice,y){
             break;
         case 2:
             //agility move boost
-            x.speed *= 1.5;
+            x.speed *= 1.3;
             actionText = "increased speed to "+x.speed;
                 //set attack classname depending on who the attacker is
                 if(x===myFighter){
@@ -214,6 +228,7 @@ function attack(x,xChoice,y){
             //hit or miss
             if(hitOrMiss(x,y) === "hit"){
                 actionText = "hit the enemy!"
+                HoMCounter = "Hit";
                     //set attack classname depending on who the attacker is
                     if(x===myFighter){
                         myAttackClass = "fight1";
@@ -224,6 +239,7 @@ function attack(x,xChoice,y){
                 y.health -= x.damage;    
             }else{
                 actionText = "attacked but missed..."
+                HoMCounter = "Miss";
                     //set attack classname depending on who the attacker is
                     if(x===myFighter){
                         myAttackClass = "fight1";
@@ -258,7 +274,18 @@ function actionPhaseCheck(){
         //updates rounds ticker
         updateRounds();  
         console.log("phasecheck found action 2 complete and finished")
-        //closes noaction modal
+        
+        //waits 2 seconds before hiding HoM messages
+        window.setTimeout(hideHoMmsgs,1000);
+
+        function hideHoMmsgs(){
+            frontMyHoM.style.opacity="0";
+            frontAiHoM.style.opacity="0";
+        }
+
+        //closes noaction modal (resets 75% opacity)
+        modalOverlay.classList.toggle("closed");
+        modalOverlay.style.opacity = "75%";
     } 
 }
 

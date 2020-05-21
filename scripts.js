@@ -15,9 +15,9 @@ let aiChoice = 0;
 const fighters ={
     Rock:{
         "name":"The Rock!",
-        "health":90,
-        "maxHealth":90,
-        "speed":10,
+        "health":80,
+        "maxHealth":80,
+        "speed":15,
         "damage":20,
         "attack":["att1","att2","att3","att4"]
     },
@@ -26,15 +26,15 @@ const fighters ={
         "health":30,
         "maxHealth":30,
         "speed":20,
-        "damage":30,
+        "damage":25,
         "attack":["att1","att2","att3","att4"]
     },
     Scissors:{
         "name":"Mr Snips!",
-        "health":60,
-        "maxHealth":60,
-        "speed":30,
-        "damage":10,
+        "health":70,
+        "maxHealth":70,
+        "speed":25,
+        "damage":15,
         "attack":["att1","att2","att3","att4"]
     }
 }
