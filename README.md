@@ -23,5 +23,6 @@ Originally developed as the traditional RPS game I decided to pivot into a more 
 * Include browser specific styling
 
 ## Still to add
-* Remaining animations
+* Fix start page modal issue
 * Responsive media queries
+* Bottom ticker text

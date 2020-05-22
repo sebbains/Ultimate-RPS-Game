@@ -127,7 +127,7 @@ function myAttackB(){
     if(myRoundAction===3){
         updateFront("aiHoM",HoMCounter);
         frontAiHoM.style.opacity="1";
-        HoMCounter === "Hit" ? frontAiHoM.style.color="#6fffe9" : frontAiHoM.style.color="#8B0000";
+        HoMCounter === "Hit" ? frontAiHoM.style.color="#fff" : frontAiHoM.style.color="#8B0000";
     }    
     
     //5 check if won else update ai health        
@@ -172,7 +172,7 @@ function aiAttackB(){
     if(aiRoundAction===3){
         updateFront("myHoM",HoMCounter);
         frontMyHoM.style.opacity="1";
-        HoMCounter === "Hit" ? frontMyHoM.style.color="##fff" : frontMyHoM.style.color="#8B0000";
+        HoMCounter === "Hit" ? frontMyHoM.style.color="#fff" : frontMyHoM.style.color="#8B0000";
     }    
 
     //5 check if won else update my health        
