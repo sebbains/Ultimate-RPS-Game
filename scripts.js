@@ -1,17 +1,12 @@
+//Selected choices
 let aiGuess = "";
 let aiGuessName = "?";
 let myGuess = "";
 let myGuessName ="?";
 let result = "";
-//let myScore = 0;
-//let aiScore = 0;
-//let myDecision = "";
-//let round = 1;
-//let move1 = "";
-//let move2 = "";
-//let previousRounds = [];
 let aiChoice = 0;
-//let continueBattle = "Y";
+
+//base fighters
 const fighters ={
     Rock:{
         "name":"The Rock!",
@@ -38,10 +33,12 @@ const fighters ={
         "attack":["att1","att2","att3","att4"]
     }
 }
+
+//our fighters
 let myFighter = {};
 let aiFighter = {};
 
-
+//event listeners needed for runnnz
 var RockIMG = document.getElementById("rockSVG");
 RockIMG.addEventListener("animationend", rockListener, false);
 var PaperIMG = document.getElementById("paperSVG");
@@ -160,6 +157,7 @@ function createaiGuess(){
     setHealthbar ("ai");
 }
 
+//actions
 function fight(myAttackClass){
     switch(myGuess){
         case "Rock":

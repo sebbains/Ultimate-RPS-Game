@@ -1,35 +1,30 @@
-//selected fighters
-//var myFighter = {};
-//var aiFighter = {};
-
 //eventlistener counters
-var myCounter = 0;
-var aiCounter = 0;
+let myCounter = 0;
+let aiCounter = 0;
 
 //round info
-var round = 1;
-var myActionText ="";
-var aiActionText ="";
-var action1Text = "";
-var action2Text = "";
-var previousRounds = [];
+let round = 1;
+let myActionText ="";
+let aiActionText ="";
+let action1Text = "";
+let action2Text = "";
+let previousRounds = [];
+let previousRound = "";
 
 //selected actions for round
-var myRoundAction = "";
-var myAttackClass = "";
-var aiRoundAction = "";
-var aiAttackClass = "";
+let myRoundAction = "";
+let myAttackClass = "";
+let aiRoundAction = "";
+let aiAttackClass = "";
  
 //loaded actions and status'
-var action1Complete = false;
-var action2Complete = false;
-var firstPlayer = "";
+let action1Complete = false;
+let action2Complete = false;
+let firstPlayer = "";
 
 //front hit or miss messsages
 let frontMyHoM = document.getElementById("myHoM");
 let frontAiHoM = document.getElementById("aiHoM");
-
-//roundBegin(1);
 
 function roundBegin(chosenAction){
     //0 clear previous round options not yet setup
@@ -64,30 +59,6 @@ function roundBegin(chosenAction){
     console.log("calling runAction1");
     runAction1();
 }
-/*
-function setActionPhase(who){
-    //sets named player as first action, unnamed player as second. (A = pre event listener actions)
-    if (who==="me"){
-        action1Player = "me";
-        action1Text = myActionText;
-        //action1Complete = myActionComplete;
-        firstPlayer = "me";
-
-        action2Player = "ai";
-        action2Text = aiActionText;
-        //action2Complete = aiActionComplete;
-    }else if (who==="ai"){    
-        action1Player = "ai";
-        action1Text = aiActionText;
-        //action1Complete = aiActionComplete;
-        firstplayer= "ai";
-
-        action2Player = "me";
-        action2Text = myActionText;
-        //action2Complete = myActionComplete;
-    }
-    console.log(firstPlayer);
-}*/
 
 function runAction1(){
     console.log("running runAction1");
@@ -114,7 +85,7 @@ function myAttackA(){
     attack(myFighter,myRoundAction,aiFighter);
 
     //2 updating round ticker with action
-    myActionText = "I "+actionText;
+    myActionText = "I "+actionText.slice(0,24);
 
     //3 run my attack animation
     fight(myAttackClass);
@@ -159,7 +130,7 @@ function aiAttackA(){
     attack(aiFighter,aiRoundAction,myFighter);
 
     //2 updating round ticker with action
-    aiActionText = "The AI "+actionText;
+    aiActionText = "The AI "+actionText.slice(0,24);
 
     //3 run ai attack animation
     aiFight(aiAttackClass);
@@ -238,7 +209,7 @@ function attack(x,xChoice,y){
                 //apply damage
                 y.health -= x.damage;    
             }else{
-                actionText = "attacked but missed..."
+                actionText = "attacked but missed"
                 HoMCounter = "Miss";
                     //set attack classname depending on who the attacker is
                     if(x===myFighter){
@@ -262,6 +233,41 @@ function hitOrMiss(x,y){
     if(hitChance>0.33){
         return "hit";
     }
+}
+
+function fight(myAttackClass){
+    switch(myGuess){
+        case "Rock":
+            RockIMG.classList.add(myAttackClass);
+        break;
+        case "Paper": 
+            PaperIMG.classList.add(myAttackClass);
+        break;
+        case "Scissors": 
+            ScissorsIMG.classList.add(myAttackClass);
+        break;
+    }
+    if(myAttackClass==="fight1"){
+        fighterAni.classList.add("myAttack");
+    }
+}
+
+function aiFight(aiAttackClass){
+    //console.log("ai attack class is "+aiAttackClass);
+    switch(aiGuess){
+        case "Rock":
+            aiRockIMG.classList.add(aiAttackClass);
+        break;
+        case "Paper": 
+            aiPaperIMG.classList.add(aiAttackClass);
+        break;
+        case "Scissors": 
+            aiScissorsIMG.classList.add(aiAttackClass);
+        break;
+    }
+    if(aiAttackClass==="aiFight1"){
+        aiFighterAni.classList.add("aiAttack");
+    }   
 }
 
 function actionPhaseCheck(){
@@ -312,6 +318,7 @@ function updateRounds(){
         action2Text = myActionText;
     }
     previousRounds.push(" Round "+round+" : "+action1Text+", "+action2Text+". ");
-    updateFront("previousRounds",previousRounds);
+    previousRound = previousRounds.pop();
+    updateFront("previousRounds",previousRound);
     round++;
 }
