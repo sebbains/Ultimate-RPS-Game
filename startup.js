@@ -39,56 +39,56 @@ let myFighter = {};
 let aiFighter = {};
 
 //event listeners needed for showing selected fighter
-var RockIMG = document.getElementById("rockSVG");
+const RockIMG = document.getElementById("rockSVG");
 RockIMG.addEventListener("animationend", rockListener, false);
-var PaperIMG = document.getElementById("paperSVG");
+const PaperIMG = document.getElementById("paperSVG");
 PaperIMG.addEventListener("animationend", paperListener, false);
-var ScissorsIMG = document.getElementById("scissorsSVG");
+const ScissorsIMG = document.getElementById("scissorsSVG");
 ScissorsIMG.addEventListener("animationend", scissorListener, false);
-var aiRockIMG = document.getElementById("aiRockSVG");
+const aiRockIMG = document.getElementById("aiRockSVG");
 aiRockIMG.addEventListener("animationend", aiRockListener, false);
-var aiPaperIMG = document.getElementById("aiPaperSVG");
+const aiPaperIMG = document.getElementById("aiPaperSVG");
 aiPaperIMG.addEventListener("animationend", aiPaperListener, false);
-var aiScissorsIMG = document.getElementById("aiScissorsSVG");
+const aiScissorsIMG = document.getElementById("aiScissorsSVG");
 aiScissorsIMG.addEventListener("animationend", aiScissorsListener, false);
 
 //event listeners needed for runnning AttackBs
-var fighterAni = document.getElementById("fighterSelect");
+const fighterAni = document.getElementById("fighterSelect");
 fighterAni.addEventListener("animationend", fighterListener, false);
-var aiFighterAni = document.getElementById("aiFighterSelect");
+const aiFighterAni = document.getElementById("aiFighterSelect");
 aiFighterAni.addEventListener("animationend", aiFighterListener, false);
 
 //event listener for hiding images
-var fighterIMGs = document.getElementsByClassName("fighter");
+const fighterIMGs = document.getElementsByClassName("fighter");
 
 //modal event listeners
-var selectFighterModal = document.querySelector("#selectYourFighterModal");
-var resultModal = document.querySelector("#resultModal");
-var modalOverlay = document.querySelector("#modalOverlay");
+const selectFighterModal = document.querySelector("#selectYourFighterModal");
+const resultModal = document.querySelector("#resultModal");
+const modalOverlay = document.querySelector("#modalOverlay");
 
 function loadStats(){
     //Rock Stats
-    var rockHealthLoaded = document.getElementById("rockHealth");
+    const rockHealthLoaded = document.getElementById("rockHealth");
     rockHealthLoaded.setAttribute("value", fighters.Rock.health);
-    var rockSpeedLoaded = document.getElementById("rockSpeed");
+    const rockSpeedLoaded = document.getElementById("rockSpeed");
     rockSpeedLoaded.setAttribute("value", fighters.Rock.speed);
-    var rockDamageLoaded = document.getElementById("rockDamage");
+    const rockDamageLoaded = document.getElementById("rockDamage");
     rockDamageLoaded.setAttribute("value", fighters.Rock.damage);
     
     //Scissor Stats
-    var scissorsHealthLoaded = document.getElementById("scissorsHealth");
+    const scissorsHealthLoaded = document.getElementById("scissorsHealth");
     scissorsHealthLoaded.setAttribute("value", fighters.Scissors.health);
-    var scissorsSpeedLoaded = document.getElementById("scissorsSpeed");
+    const scissorsSpeedLoaded = document.getElementById("scissorsSpeed");
     scissorsSpeedLoaded.setAttribute("value", fighters.Scissors.speed);
-    var scissorsDamageLoaded = document.getElementById("scissorsDamage");
+    const scissorsDamageLoaded = document.getElementById("scissorsDamage");
     scissorsDamageLoaded.setAttribute("value", fighters.Scissors.damage);
 
     //Paper Stats
-    var paperHealthLoaded = document.getElementById("paperHealth");
+    const paperHealthLoaded = document.getElementById("paperHealth");
     paperHealthLoaded.setAttribute("value", fighters.Paper.health);
-    var paperSpeedLoaded = document.getElementById("paperSpeed");
+    const paperSpeedLoaded = document.getElementById("paperSpeed");
     paperSpeedLoaded.setAttribute("value", fighters.Paper.speed);
-    var paperDamageLoaded = document.getElementById("paperDamage");
+    const paperDamageLoaded = document.getElementById("paperDamage");
     paperDamageLoaded.setAttribute("value", fighters.Paper.damage);
 }
 
@@ -172,4 +172,91 @@ function createaiGuess(){
 
     //set healthbar
     setHealthbar ("ai");
+}
+
+//utilities/ cleanup actions
+function updateFront(item, result){
+    let resultMap = document.getElementById(item);
+    resultMap.innerHTML = result;
+}
+
+function resetGame(){
+    clearChoices();
+    previousRounds = [];
+    updateFront("previousRounds",previousRounds);
+    toggleModals(resultModal);
+    toggleModals(selectFighterModal);
+}
+
+function clearChoices(){
+    hideIMGS();
+    aiGuess="";
+    aiFighterName = "?";
+    updateFront("aiFighterText",aiFighterName);
+    myGuess = "";
+    myGuessName ="?";
+    updateFront("myFighterText",myGuessName);
+    result = "";
+    updateFront("result",result);
+}
+
+function hideIMGS(){
+    for (i = 0; i < fighterIMGs.length; i++) {
+    fighterIMGs[i].style.display = "none";
+    }
+}
+
+function toggleModals(modalOption){
+    modalOption.classList.toggle("closed");
+    modalOverlay.classList.toggle("closed");
+}
+
+//reset my classes post animation finish
+function fighterListener(event) {
+    fighterAni.classList.remove("myAttack");
+    console.log("myFighter listener fired");
+    if (myCounter>=1){
+        console.log("but no action taken");
+    }else{
+        console.log("actually calling myAttackB")
+        myAttackB();
+        myCounter++;
+    }
+}
+
+function rockListener(event) {
+    RockIMG.classList.remove(myAttackClass);
+}
+
+function paperListener(event) {
+    PaperIMG.classList.remove(myAttackClass);
+}
+
+function scissorListener(event) {
+    ScissorsIMG.classList.remove(myAttackClass);
+}
+
+//reset ai classes post animation finish
+function aiFighterListener(event) {
+    aiFighterAni.classList.remove("aiAttack");
+    console.log("aiFighter listener fired");
+    if (aiCounter>=1){
+        console.log("but no action taken");
+    }else{
+        console.log("actually calling aiAttackB")
+        aiAttackB();
+        aiCounter++;
+    }
+}
+
+function aiRockListener(event) {
+    aiRockIMG.classList.remove(aiAttackClass);
+}
+
+function aiPaperListener(event) {
+    aiPaperIMG.classList.remove(aiAttackClass);
+}
+
+function aiScissorsListener(event) {
+    aiScissorsIMG.classList.remove(aiAttackClass);
 }
