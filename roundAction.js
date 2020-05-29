@@ -36,7 +36,7 @@ function roundBegin(chosenAction){
 
     //1 activate noaction modal (0% opacity)
     modalOverlay.classList.toggle("closed");
-    modalOverlay.style.opacity = "0%";
+    modalOverlay.style.opacity = "0";
 
     //2 set global variable for future function calls
     myRoundAction = chosenAction;
@@ -291,7 +291,7 @@ function actionPhaseCheck(){
 
         //closes noaction modal (resets 75% opacity)
         modalOverlay.classList.toggle("closed");
-        modalOverlay.style.opacity = "75%";
+        modalOverlay.style.opacity = "0.75";
     } 
 }
 
