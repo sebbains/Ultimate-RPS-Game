@@ -14,13 +14,12 @@ Originally developed as the traditional RPS game I decided to pivot into a more 
 * CSS animations
 * Flexbox layouts
 * Manipulating Modal visilibity
+* Cross browser support
+* Media queries
 
 ## To improve on
 * Initial project planning
 * Naming conventions
 * Lot's more of the DOM to explore
 * Better code commenting
-* Include browser specific styling
-
-## Still to add
-* Fix start page modal issue on large full screen
+* Include browser specific styling from outset
