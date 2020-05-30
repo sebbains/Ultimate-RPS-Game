@@ -104,6 +104,7 @@ function myAttackB(){
     
     //5 check if won else update ai health        
     if(aiFighter.health <= 0){
+        endGame = true;
         endGameMessage("ai");
     }else{
         setHealthbar ("ai");
@@ -111,7 +112,6 @@ function myAttackB(){
 
     //6 sets my action is completed
     if (firstPlayer==="me"){
-        endGame = true;
         action1Complete = true;
     }else{
         action2Complete = true;
