@@ -10,6 +10,7 @@ let action1Text = "";
 let action2Text = "";
 let previousRounds = [];
 let previousRound = "";
+let endGame = false;
 
 //selected actions for round
 let myRoundAction = "";
@@ -110,6 +111,7 @@ function myAttackB(){
 
     //6 sets my action is completed
     if (firstPlayer==="me"){
+        endGame = true;
         action1Complete = true;
     }else{
         action2Complete = true;
@@ -148,6 +150,7 @@ function aiAttackB(){
 
     //5 check if won else update my health        
     if(myFighter.health <= 0){
+        endGame = true;
         endGameMessage("me");
     }else{
         setHealthbar ("me");
@@ -277,21 +280,26 @@ function actionPhaseCheck(){
         console.log("calling action 2, action1 is "+action1Complete+", action2 is "+action2Complete);
         runAction2();
     }else{
-        //updates rounds ticker
-        updateRounds();  
-        console.log("phasecheck found action 2 complete and finished")
-        
-        //waits 2 seconds before hiding HoM messages
-        window.setTimeout(hideHoMmsgs,1000);
+        //check end game is set
+        if(endGame === true){
+            console.log("endGame is already fired, no action taken");
+        }else{
+            //updates rounds ticker
+            updateRounds();  
+            console.log("phasecheck found action 2 complete and finished")
+            
+            //waits 2 seconds before hiding HoM messages
+            window.setTimeout(hideHoMmsgs,1000);
 
-        function hideHoMmsgs(){
-            frontMyHoM.style.opacity="0";
-            frontAiHoM.style.opacity="0";
+            function hideHoMmsgs(){
+                frontMyHoM.style.opacity="0";
+                frontAiHoM.style.opacity="0";
+            }
+
+            //closes noaction modal (resets 75% opacity)
+            modalOverlay.classList.toggle("closed");
+            modalOverlay.style.opacity = "0.75";
         }
-
-        //closes noaction modal (resets 75% opacity)
-        modalOverlay.classList.toggle("closed");
-        modalOverlay.style.opacity = "0.75";
     } 
 }
 
