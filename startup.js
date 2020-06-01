@@ -183,6 +183,7 @@ function updateFront(item, result){
 function resetGame(){
     clearChoices();
     previousRounds = [];
+    endGame = false;
     updateFront("previousRounds",previousRounds);
     toggleModals(resultModal);
     toggleModals(selectFighterModal);

@@ -104,8 +104,13 @@ function myAttackB(){
     
     //5 check if won else update ai health        
     if(aiFighter.health <= 0){
-        endGame = true;
-        endGameMessage("ai");
+        if(endGame===false){
+            endGameMessage("ai");
+            modalOverlay.style.opacity = "0.75";
+            modalOverlay.classList.toggle("closed");
+        }else{
+            console.log("Player 2 would have just won on this turn");
+        }
     }else{
         setHealthbar ("ai");
     }
@@ -150,8 +155,13 @@ function aiAttackB(){
 
     //5 check if won else update my health        
     if(myFighter.health <= 0){
-        endGame = true;
+        if(endGame===false){
         endGameMessage("me");
+        modalOverlay.style.opacity = "0.75";
+        modalOverlay.classList.toggle("closed");
+        }else{
+            console.log("Player 2 would have just won on this turn");
+        }
     }else{
         setHealthbar ("me");
     }
@@ -305,6 +315,7 @@ function actionPhaseCheck(){
 
 function endGameMessage(x){
     //checks if enemy of active player has died to play result
+    endGame = true;
     if (x === "me"){
         result="Oh no, you lost!";
         updateFront("result",result);
